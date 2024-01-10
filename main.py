@@ -3,9 +3,21 @@ from tkinter import *
 window = Tk()
 window.title("Invoice Generator")
 
-medicines = {"medicine A": 10, "medicine B": 22}
+medicines = {"medicine A": 10, "medicine B": 22, "medicine C": 22, "medicine D": 22}
 
 invoice_items = []
+
+def calculate_total():
+    total = 0.0
+    for item in invoice_items:
+        total = total + item[2]
+    return total
+
+def update_invoice_text():
+    invoice_text.delete(1.0, END)
+    for item in invoice_items:
+        invoice_text.insert(
+            END, f"Medicine: {item[0]}, Quantity: {item[1]}, Total: {item[2]}\n")
 
 def add_medicine():
     selected_medicine = medicine_listbox.get(ANCHOR)
@@ -14,6 +26,9 @@ def add_medicine():
     item_total= quantity * price
     invoice_items.append((selected_medicine, quantity, item_total))
     print(invoice_items)
+    total_amount_entry.delete(0, END)
+    total_amount_entry.insert(END,str(calculate_total()))
+    update_invoice_text()
 
 medicine_lable = Label(window, text="Medicine: ")
 medicine_lable.pack()
