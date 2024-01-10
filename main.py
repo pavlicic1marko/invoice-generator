@@ -1,13 +1,16 @@
 from tkinter import *
 
 window = Tk()
-
 window.title("Invoice Generator")
+
+medicines = {"medicine A": 10, "medicine B": 22}
 
 medicine_lable = Label(window, text="Medicine: ")
 medicine_lable.pack()
 
-medicine_listbox = Listbox(window, selectmode=SINGLE)
+medicine_listbox = Listbox(window, selectmode=SINGLE) # only one medicine can be selected
+for medicine in medicines:
+    medicine_listbox.insert(END, medicine)
 medicine_listbox.pack()
 
 quantity_label = Label(window, text="Quantity")
