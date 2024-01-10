@@ -5,6 +5,16 @@ window.title("Invoice Generator")
 
 medicines = {"medicine A": 10, "medicine B": 22}
 
+invoice_items = []
+
+def add_medicine():
+    selected_medicine = medicine_listbox.get(ANCHOR)
+    quantity = int(quantity_entry.get())
+    price = medicines[selected_medicine]
+    item_total= quantity * price
+    invoice_items.append((selected_medicine, quantity, item_total))
+    print(invoice_items)
+
 medicine_lable = Label(window, text="Medicine: ")
 medicine_lable.pack()
 
@@ -19,7 +29,7 @@ quantity_label.pack()
 quantity_entry = Entry(window)
 quantity_entry.pack()
 
-add_button = Button(text="add medicine")
+add_button = Button(text="add medicine", command=add_medicine)
 add_button.pack()
 
 total_amount_label = Label(window, text="Total Amount")
