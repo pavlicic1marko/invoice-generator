@@ -31,19 +31,19 @@ def generate_invoice():
 
     # Set up PDF formatting
     pdf.set_font("Helvetica", size=12)
-    pdf.cell(0, 10, txt="Invoice", new_x="LMARGIN", new_y="NEXT", align="C")
-    pdf.cell(0, 10, txt="Customer: " + customer_name, new_x="LMARGIN", new_y="NEXT", align="L")
-    pdf.cell(0, 10, txt="", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 10, text="Invoice", new_x="LMARGIN", new_y="NEXT", align="C")
+    pdf.cell(0, 10, text="Customer: " + customer_name, new_x="LMARGIN", new_y="NEXT", align="L")
+    pdf.cell(0, 10, text="", new_x="LMARGIN", new_y="NEXT")
 
     # Add invoice items to PDF
     for item in invoice_items:
         medicine_name, quantity, item_total = item
         pdf.cell(
-            0, 10, txt=f"Medicine: {medicine_name}, Quantity: {quantity}, Total: {item_total}", new_x="LMARGIN",
+            0, 10, text=f"Medicine: {medicine_name}, Quantity: {quantity}, Total: {item_total}", new_x="LMARGIN",
             new_y="NEXT", align="L")
 
     # Add total amount to PDF
-    pdf.cell(0, 10, txt="Total Amount: " +
+    pdf.cell(0, 10, text="Total Amount: " +
                         str(calculate_total()), new_x="LMARGIN", new_y="NEXT", align="L")
 
     # Save the PDF file
